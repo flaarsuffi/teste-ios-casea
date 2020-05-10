@@ -38,7 +38,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func startScanning(){
         let uuid = UUID(uuidString: "22A08C32-2E93-444F-9726-F94549F16911")!
-        let beaconRegion = CLBeaconRegion.i
+        let beaconRegion = CLBeaconRegion()
         
         locationManager?.startMonitoring(for: beaconRegion)
         locationManager?.startRangingBeacons(in: beaconRegion)
