@@ -37,11 +37,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func startScanning(){
-        let uuid = UUID(uuidString: "22A08C32-2E93-444F-9726-F94549F16911")!
-        let beaconRegion = CLBeaconRegion()
-        
-        locationManager?.startMonitoring(for: beaconRegion)
-        locationManager?.startRangingBeacons(in: beaconRegion)
+        let uuid = UUID(uuidString: "74278BDA-B644-4520-8F0C-720EAF059935")!
+            let constraint = CLBeaconIdentityConstraint(uuid: uuid, major: 123, minor: 456)
+            let beaconRegion = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: "Apple AirLocate 74278BDA")
+            locationManager?.startMonitoring(for: beaconRegion)
+            locationManager?.startRangingBeacons(satisfying: constraint)
     }
     
     func update(distance: CLProximity) {
