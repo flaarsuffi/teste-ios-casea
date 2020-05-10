@@ -24,8 +24,9 @@ class TransmitViewController: UIViewController, CBPeripheralManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
+        
+        initBeaconRegion()
+        setLabels()
     }
     
     @IBAction func transmitButtonTapped(_ sender: UIButton) {
@@ -41,6 +42,20 @@ class TransmitViewController: UIViewController, CBPeripheralManagerDelegate {
             peripheralManager .stopAdvertising()
             print("Not Powered On, or some other error")
         }
+    }
+    
+    func initBeaconRegion() {
+        beaconRegion = CLBeaconRegion.init(proximityUUID: UUID.init(uuidString: "31C69A98-7AB6-4111-AB97-DD139FE06906")!,
+                                           major: 1672,
+                                           minor: 98,
+                                           identifier: "signal sender 1")
+    }
+    
+    func setLabels() {
+        uuidLabel.text = beaconRegion.proximityUUID.uuidString
+        majorLabel.text = beaconRegion.major?.stringValue
+        minorLabel.text = beaconRegion.minor?.stringValue
+        identityLabel.text = beaconRegion.identifier
     }
     
     
