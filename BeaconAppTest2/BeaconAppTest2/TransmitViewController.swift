@@ -21,7 +21,7 @@ class TransmitViewController: UIViewController, CBPeripheralManagerDelegate {
     var beaconPeripheralData: NSDictionary!
     var peripheralManager: CBPeripheralManager!
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,11 +30,11 @@ class TransmitViewController: UIViewController, CBPeripheralManagerDelegate {
     }
     
     @IBAction func transmitButtonTapped(_ sender: UIButton) {
-               beaconPeripheralData = beaconRegion .peripheralData(withMeasuredPower: nil)
-            peripheralManager = CBPeripheralManager.init(delegate: self, queue: nil)
+        beaconPeripheralData = beaconRegion .peripheralData(withMeasuredPower: nil)
+        peripheralManager = CBPeripheralManager.init(delegate: self, queue: nil)
     }
     
-   func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         if (peripheral.state == .poweredOn) {
             peripheralManager .startAdvertising(beaconPeripheralData as? [String : Any])
             print("Powered On")
